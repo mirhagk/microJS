@@ -15,17 +15,16 @@ Element.prototype.toggleClass = function (className) {
     }
 };
 (function(){
-    function Send(url, method, data, sync) {
+    function send(url, method, data) {
         return new Promise(function (resolve, reject) {
             var request = new XMLHttpRequest();
-            request.open(method, url, !sync);
+            request.open(method, url, true);
             request.onreadystatechange = function () {
-                console.log(request);
-                if (request.readyState === 4 && request.status === 200) {
-                    resolve(request.responseText);
-                }
-                else {
-                    reject(request.responseText);
+                if (request.readyState === 4) {
+                    if (request.status === 200)
+                        resolve(request.responseText);
+                    else
+                        reject(request.responseText);
                 }
             };
             if (method == 'POST') {
@@ -34,8 +33,8 @@ Element.prototype.toggleClass = function (className) {
             request.send(JSON.stringify(data));
         });
     }
-    function BuildUrl(base, params) {
-        if (params==null||params=={}||params==[])
+    function buildUrl(base, params) {
+        if ($.isEmpty(params))
             return base;
         var query = [];
         for (var key in params) {
@@ -43,10 +42,15 @@ Element.prototype.toggleClass = function (className) {
         }
         return base + '?' + query.join('&');
     }
-    $.Post = function (url, params, data, sync) {
-        return this.Send(BuildUrl(url, params), 'POST', data, sync);
+    $.isEmpty = function (value) {
+        return value == null
+        || (value.length && value.length == 0)
+        || (Object.keys(value).length === 0);
     }
-    $.Get = function (url, params, sync) {
-        return this.Send(BuildUrl(url, params), 'GET', null, sync);
+    $.post = function (url, params, data) {
+        return send(buildUrl(url, params), 'POST', data);
+    }
+    $.get = function (url, params) {
+        return send(buildUrl(url, params), 'GET', null);
     }
 })();
