@@ -9,16 +9,18 @@ Most of these methods are pretty common standard methods, the kind of method you
 
 This library removes the abstraction that jQuery provides, removing a very heavy weight dependency (both in terms of an extra layer to think about and in terms of code size)
 
-If you want to have some laughs, check out the home page of jQuery. It says:
-
-> Lightweight Footprint: Only 32kB minified and gzipped.
-
-Just to put that in perspective, AngluarJS, which is widely heralded as one of the heaviest frameworks out there, is *just* 46kB minified and gzipped (which includes jqLite, which is their own lighweight version of jQuery).
-
-
 
 Helper methods
 ---
 
-`$` - wraps `document.querySelector`
-`$$` - wraps `document.querySelectorAll` and returns an array of nodes
+`$(selector: string, el?:Element)` - wraps `document.querySelector` passing the seletor. You can also provide a second argument of an element which this will be scoped to (finds an element that's a child)
+
+`$$(selector: string, el?:Element` - wraps `document.querySelectorAll` and returns an array of nodes (allowing you to use the native array methods in javascript). As with `$` you can scope it to a certain element 
+
+`Element.prototype.toggleClass(className:string)` - a method placed on elements that allows you to toggle a class on or off for an element. Used like `$('#tab1').toggleClass('active')`
+
+`$.isEmpty(value:any)` - returns true if the value is null or is an empty array or an empty object (no properties defined)
+
+`$.post(url: string, params: any, data: any)` - makes an ajax POST request and returns a promise that resolves when it receives a 200 and fails otherwise
+
+`$.get(url: string, params: any)` - makes an ajax GET request and returns a promise that works as with `$.post`
