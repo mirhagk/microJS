@@ -6,14 +6,6 @@ function $$ (selector, el) {
     if (!el) {el = document;}
     return Array.prototype.slice.call(el.querySelectorAll(selector));
 }
-Element.prototype.toggleClass = function (className) {
-    if (this.className.indexOf(className) > -1) {
-        this.className = this.className.replace(className, '');
-    }
-    else {
-        this.className += ' ' + className;
-    }
-};
 (function(){
     function send(url, method, data) {
         return new Promise(function (resolve, reject) {
