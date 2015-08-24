@@ -17,8 +17,6 @@ Helper methods
 
 `$$(selector: string, el?:Element` - wraps `document.querySelectorAll` and returns an array of nodes (allowing you to use the native array methods in javascript). As with `$` you can scope it to a certain element 
 
-`Element.prototype.toggleClass(className:string)` - a method placed on elements that allows you to toggle a class on or off for an element. Used like `$('#tab1').toggleClass('active')`
-
 `$.isEmpty(value:any)` - returns true if the value is null or is an empty array or an empty object (no properties defined)
 
 `$.post(url: string, params: any, data: any)` - makes an ajax POST request and returns a promise that resolves when it receives a 200 and fails otherwise
