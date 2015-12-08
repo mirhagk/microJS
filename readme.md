@@ -5,7 +5,7 @@ MicroJS is a non-framework javascript library. It's goal is to provide the 5% of
 
 It's a set of helper methods only, the framework will not construct it own objects.
 
-Most of these methods are pretty common standard methods, the kind of method you'd see as a stack overflow answer. There will be minor tweaks where appropriate, but the goal is to make a library where non of the helper methods requiring learning new concepts.
+Most of these methods are pretty common standard methods, the kind of method you'd see as a stack overflow answer. There will be minor tweaks where appropriate, but the goal is to make a library where none of the helper methods require learning new concepts.
 
 This library removes the abstraction that jQuery provides, removing a very heavy weight dependency (both in terms of an extra layer to think about and in terms of code size)
 
